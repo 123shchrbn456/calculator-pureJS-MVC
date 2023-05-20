@@ -21,8 +21,26 @@ class Model extends EventTarget {
         this.dispatchEvent(new Event("statechange"));
     }
 
-    calculateResult(mathSymbol) {
-        //
+    calculateResult() {
+        if (Boolean(this.state.firstNumber) && Boolean(this.state.manipulator) && Boolean(this.state.secondNumber)) {
+            console.log("срабатывает");
+            // using eval is not safe
+            this.state.calculateResult = eval(
+                `${this.state.firstNumber} ${this.state.manipulator} ${this.state.secondNumber}`
+            );
+            this.dispatchEvent(new Event("statechange"));
+        }
+    }
+
+    clearInput() {
+        this.state = {
+            firstNumber: 0,
+            secondNumber: undefined,
+            manipulator: undefined,
+            inputData: undefined,
+            inputCalculatedResult: undefined,
+        };
+        this.dispatchEvent(new Event("statechange"));
     }
 }
 

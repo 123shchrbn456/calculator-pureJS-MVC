@@ -10,16 +10,22 @@ class View {
     }
 
     updateInput(state) {
+        if (state.calculateResult) {
+            this.$.input.value = state.calculateResult;
+            return;
+        }
         // здесь нужно взять все числа и математические символы, поместить в массив и вернуть только те элементы которые !== undefined
-        const manipulator = state.manipulator;
+        // should collect each clicked number and math symbols in the array and return only elements that are !== undefined
         this.$.input.value = 0;
-        if (!manipulator) this.$.input.value = state.firstNumber;
+        if (!state.manipulator) this.$.input.value = state.firstNumber;
 
-        if (manipulator) {
+        if (state.manipulator) {
             this.$.input.value = state.firstNumber + state.manipulator;
         }
 
-        // this.$.input.value = state.firstNumber + state.manipulator;
+        if (state.manipulator && state.secondNumber) {
+            this.$.input.value = state.firstNumber + state.manipulator + state.secondNumber;
+        }
     }
 
     bindBtnsNumbersEvent(handler) {
@@ -30,8 +36,12 @@ class View {
         this.$.btnsMathSymbols.forEach((btn) => btn.addEventListener("click", handler));
     }
 
-    showResult() {
-        //
+    bindCalculateResultEvent(handler) {
+        this.$.btnMathResult.addEventListener("click", handler);
+    }
+
+    bindClearInputEvent(handler) {
+        this.$.btnClearInput.addEventListener("click", handler);
     }
 }
 
