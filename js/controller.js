@@ -1,12 +1,16 @@
 import view from "./view.js";
 import model from "./model.js";
 
-function btnsEventHandler(e) {
-    alert(e.target.id);
+function btnsNumbersEventHandler(e) {
+    model.btnNumbersHandler(e.target.id);
 }
 
 function init() {
-    view.bindBtnsEvent(btnsEventHandler);
+    view.bindBtnsNumbersEvent(btnsNumbersEventHandler);
+
+    model.addEventListener("statechange", () => {
+        view.updateInput(model.state);
+    });
 }
 
 window.addEventListener("load", init);

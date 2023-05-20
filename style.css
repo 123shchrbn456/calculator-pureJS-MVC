@@ -51,6 +51,6 @@ button:hover {
     background-color: black;
 }
 
-button.res {
+button.btn-math__res {
     background-color: blue;
 }

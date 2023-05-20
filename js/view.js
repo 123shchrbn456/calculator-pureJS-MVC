@@ -2,11 +2,20 @@ class View {
     $ = {};
     constructor() {
         this.$.input = document.querySelector(".calculator-input");
-        this.$.btns = document.querySelectorAll("button");
+        this.$.btnsNumbers = document.querySelectorAll(".btn-number");
+        this.$.btnsMathSymbols = document.querySelectorAll(".btn-math__symbol");
+        this.$.btnsNumbersAdditions = document.querySelectorAll(".btn-number-addition");
+        this.$.btnMathResult = document.querySelector(".btn-math__result");
+        this.$.btnClearInput = document.querySelector(".btn-input__clear");
     }
 
-    bindBtnsEvent(handler) {
-        this.$.btns.forEach((btn) => btn.addEventListener("click", handler));
+    updateInput(state) {
+        this.$.input.value = 0;
+        this.$.input.value = state.firstNumber;
+    }
+
+    bindBtnsNumbersEvent(handler) {
+        this.$.btnsNumbers.forEach((btn) => btn.addEventListener("click", handler));
     }
 
     showResult() {
