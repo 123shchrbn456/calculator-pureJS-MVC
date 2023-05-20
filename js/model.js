@@ -12,9 +12,12 @@ class Model extends EventTarget {
 
     btnNumbersHandler(number) {
         number = Number(number);
-        console.log(number);
         this.state.manipulator === undefined ? (this.state.firstNumber = number) : (this.state.secondNumber = number);
-        // закладка
+        this.dispatchEvent(new Event("statechange"));
+    }
+
+    btnMathSymbolsHandler(mathSymbol) {
+        this.state.manipulator = mathSymbol;
         this.dispatchEvent(new Event("statechange"));
     }
 

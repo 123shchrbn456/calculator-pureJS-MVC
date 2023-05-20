@@ -10,12 +10,24 @@ class View {
     }
 
     updateInput(state) {
+        // здесь нужно взять все числа и математические символы, поместить в массив и вернуть только те элементы которые !== undefined
+        const manipulator = state.manipulator;
         this.$.input.value = 0;
-        this.$.input.value = state.firstNumber;
+        if (!manipulator) this.$.input.value = state.firstNumber;
+
+        if (manipulator) {
+            this.$.input.value = state.firstNumber + state.manipulator;
+        }
+
+        // this.$.input.value = state.firstNumber + state.manipulator;
     }
 
     bindBtnsNumbersEvent(handler) {
         this.$.btnsNumbers.forEach((btn) => btn.addEventListener("click", handler));
+    }
+
+    bindBtnsMathSymbolsEvent(handler) {
+        this.$.btnsMathSymbols.forEach((btn) => btn.addEventListener("click", handler));
     }
 
     showResult() {
